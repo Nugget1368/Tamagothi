@@ -1,1 +1,14 @@
-/*# sourceMappingURL=style.css.map */
+* {
+  transition: 0.2s;
+}
+
+body, main {
+  min-height: 100vh;
+}
+
+section {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: stretch;
+}/*# sourceMappingURL=style.css.map */

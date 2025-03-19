@@ -52,7 +52,7 @@ export class Cat extends Pet {
     constructor(name = "Nameless") {
         super(name);
         this.type = "Cat";
-        this.img = "";
+        this.img = "./images/pokeball.svg";
     }
 
     growl() {
