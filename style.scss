@@ -1,13 +1,39 @@
 @import "./partials/mixins.scss";
+@import "./partials/colors.scss";
 
 * {
-    transition: .2s;
+  transition: 0.2s;
 }
 
-body, main{
-    min-height: 100vh;
+body,
+main {
+  min-height: 100vh;
 }
 
-section{
-    @include flex($justify:center);
+section {
+  @include flex($justify: center);
+}
+
+article.tamagotchi {
+  width: 200px;
+  div {
+    @include flex(column);
+    box-sizing: border-box;
+    background-color: $primary-300;
+    padding: 10px;
+    border-radius: 5px;
+    > picture {
+      @include flex(column, center, center);
+      height: 100px;
+      background-color: $secondary-900;
+      border: 4px solid #000;
+      border-radius: 5px;
+      margin-bottom: 8px;
+      box-shadow: 8px 8px 15px #000 inset, -8px -8px 15px #000 inset;
+    }
+    > div {
+      background-color: $white-400;
+      border-radius: 0px;
+    }
+  }
 }
