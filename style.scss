@@ -10,8 +10,18 @@ main {
   min-height: 100vh;
 }
 
+main {
+  @include flex(column);
+}
+
 section {
   @include flex($justify: center);
+  margin: 10px;
+}
+
+span,
+a {
+  cursor: pointer;
 }
 
 article.tamagotchi {
@@ -36,4 +46,41 @@ article.tamagotchi {
       border-radius: 0px;
     }
   }
+}
+
+dialog{
+    fieldset{
+        @include flex(column);
+        border: none;
+        padding: 0px;
+        font-size: 17px;
+    }
+    footer{
+        @include flex(column);
+        margin-top: 10px;
+    }
+}
+
+
+button {
+  padding: 6px;
+  box-shadow: 1px 1px #000;
+  transition: 0.1;
+  border-width: 2px;
+  &:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 3px #fff inset, -2px -2px 3px#fff inset;
+  }
+}
+
+.warning-btn {
+  border: 2px solid $teritary-500;
+  background-color: #fff;
+  &.warning-btn:hover {
+    color: $teritary-500;
+  }
+}
+
+.primary-btn {
+  background-color: $secondary-500;
 }

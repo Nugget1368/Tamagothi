@@ -10,7 +10,24 @@
 <body>
     <main>
         <section>
+            <button data-open-modal class="primary-btn">Add Pet</button>
+        </section>
+        <section data-pets>
         </section>
     </main>
+    <dialog data-modal>
+        <article>
+            <fieldset>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
+                <label for="type">Type</label>
+                <select name="type" id="type"></select>
+            </fieldset>
+        </article>
+        <footer>
+            <button data-close-modal class="warning-btn">Close</button>
+            <button class="primary-btn">Confirm</button>
+        </footer>
+    </dialog>
 </body>
 </html>

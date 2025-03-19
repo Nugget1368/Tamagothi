@@ -7,11 +7,24 @@ main {
   min-height: 100vh;
 }
 
+main {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
 section {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: stretch;
+  margin: 10px;
+}
+
+span,
+a {
+  cursor: pointer;
 }
 
 article.tamagotchi {
@@ -42,4 +55,44 @@ article.tamagotchi div > picture {
 article.tamagotchi div > div {
   background-color: rgb(227, 237, 235);
   border-radius: 0px;
+}
+
+dialog fieldset {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  border: none;
+  padding: 0px;
+  font-size: 17px;
+}
+dialog footer {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin-top: 10px;
+}
+
+button {
+  padding: 6px;
+  box-shadow: 1px 1px #000;
+  transition: 0.1;
+  border-width: 2px;
+}
+button:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 3px #fff inset, -2px -2px 3px #fff inset;
+}
+
+.warning-btn {
+  border: 2px solid #ef476f;
+  background-color: #fff;
+}
+.warning-btn.warning-btn:hover {
+  color: #ef476f;
+}
+
+.primary-btn {
+  background-color: #06d6a0;
 }/*# sourceMappingURL=style.css.map */

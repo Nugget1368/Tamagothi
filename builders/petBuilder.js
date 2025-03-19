@@ -16,6 +16,6 @@ export const buildPet = (pet) => {
     content.append(name, energy, fullness);
     div.append(picture, content);
     article.append(div);
-    let section = document.querySelector("main section");
+    let section = document.querySelector("main section[data-pets]");
     section.append(article);
 }
