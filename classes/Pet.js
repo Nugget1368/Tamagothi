@@ -1,4 +1,4 @@
-export class Pet {
+class Pet {
     constructor(name = "Nameless") {
         this.name = name;
         this.energy = 50;
