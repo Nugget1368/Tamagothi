@@ -16,3 +16,4 @@ openModalBtn.addEventListener("click", () => modal.showModal());
 let closeModalBtn = document.querySelector("[data-close-modal]");
 console.log(closeModalBtn);
 closeModalBtn.addEventListener("click", () => modal.close());
+console.log("hello?");
