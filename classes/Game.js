@@ -1,12 +1,12 @@
 import { Cat, Fox, Panda, Toilet } from "./Pet.js"
-import { buildPet } from "../builders/petBuilder.js";
+import { Builder } from "../builders/Builder.js";
 
 export class Game {
     static startGame = (pets = []) => {
         // Build stored pets
         if(pets.length > 0){
             pets.forEach((pet) => {
-                buildPet(pet);
+                Builder.buildPet(pet);
             });
         };
         // Add eventlisteners
@@ -19,7 +19,7 @@ export class Game {
         confirmBtn.addEventListener("click", () => {
             let pet = Game.addPet();
             pets.push(pet);
-            buildPet(pet);
+            Builder.buildPet(pet);
             modal.close();
         });
     }
