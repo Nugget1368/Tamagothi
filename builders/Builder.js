@@ -3,6 +3,7 @@ export class Builder {
     static buildPet = (pet) => {
         let article = document.createElement("article");
         article.classList.add("tamagotchi");
+        article.setAttribute("id", `pet-${pet.name}`);
         let picture = document.createElement("picture");
         let img = document.createElement("img");
         img.src = pet.img;
@@ -13,9 +14,11 @@ export class Builder {
         energy.textContent = `Energy: ${pet.energy}`;
         let fullness = document.createElement("label");
         fullness.textContent = `Fullness: ${pet.fullness}`;
+        let happiness = document.createElement("label");
+        happiness.textContent = `Happiness: ${pet.happiness}`;
         let div = document.createElement("div");
         let content = document.createElement("div");
-        content.append(name, energy, fullness);
+        content.append(name, energy, fullness, happiness);
         let btns = Builder.buildPetBtns(pet);
         btns.classList.add("btn-container");
         div.append(picture, content, btns);

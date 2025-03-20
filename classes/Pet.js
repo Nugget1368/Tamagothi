@@ -10,7 +10,7 @@ class Pet {
         this.energy += 40;
         this.happiness -= 10;
         this.fullness -= 10;
-        checkValues();
+        this.checkValues();
         return `You took a nap with ${this.name}.`;
     }
 
@@ -18,7 +18,7 @@ class Pet {
         this.energy -= 10;
         this.happiness += 30;
         this.fullness -= 10;
-        checkValues();
+        this.checkValues();
         return `You played with ${this.name}.`;
     }
 
@@ -26,7 +26,7 @@ class Pet {
         this.energy -= 15;
         this.happiness += 5;
         this.fullness += 30;
-        checkValues();
+        this.checkValues();
         return `You fed ${this.name}.`;
     }
 
