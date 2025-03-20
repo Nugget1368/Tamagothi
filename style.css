@@ -28,7 +28,7 @@ a {
 }
 
 article.tamagotchi {
-  width: 200px;
+  width: 250px;
 }
 article.tamagotchi div {
   display: flex;
@@ -36,7 +36,7 @@ article.tamagotchi div {
   justify-content: flex-start;
   align-items: stretch;
   box-sizing: border-box;
-  background-color: #0d5c77;
+  background-color: #9a2257;
   padding: 10px;
   border-radius: 5px;
 }
@@ -55,6 +55,26 @@ article.tamagotchi div > picture {
 article.tamagotchi div > div {
   background-color: rgb(227, 237, 235);
   border-radius: 0px;
+}
+article.tamagotchi div .btn-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+  color: rgb(227, 237, 235);
+  margin-top: 5px;
+  gap: 5px;
+  background-color: #272929;
+  border-radius: 10px;
+  padding: 3px;
+  border: 5px solid #0b4b60;
+}
+article.tamagotchi div .btn-container > div {
+  padding: 0px;
+  background-color: #272929;
+}
+article.tamagotchi div .btn-container button {
+  background-color: #9a2257;
 }
 
 dialog fieldset {
@@ -77,12 +97,18 @@ dialog footer {
 button {
   padding: 6px;
   box-shadow: 1px 1px #000;
-  transition: 0.1;
+  transition: 0.1 !important;
   border-width: 2px;
 }
 button:active {
   transform: translate(1px, 1px);
   box-shadow: 2px 2px 3px #fff inset, -2px -2px 3px #fff inset;
+}
+
+.pet-btn {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
 }
 
 .warning-btn {

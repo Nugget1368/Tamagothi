@@ -16,9 +16,28 @@ export class Builder {
         let div = document.createElement("div");
         let content = document.createElement("div");
         content.append(name, energy, fullness);
-        div.append(picture, content);
+        let btns = Builder.buildPetBtns(pet);
+        btns.classList.add("btn-container");
+        div.append(picture, content, btns);
         article.append(div);
         let section = document.querySelector("main section[data-pets]");
         section.append(article);
+    }
+
+    static buildPetBtns = (pet) => {
+        let btnContainer = document.createElement("div");
+        for(let x = 0; x < 3; x++) {
+            let btn = document.createElement("button");
+            let action = x == 0 ? "Nap" : x == 1 ? "Play" : "Feed";
+            btn.classList.add("pet-btn");
+            let btnId = `${action}-${pet.name}`;
+            btn.setAttribute("id", btnId);
+            let label = document.createElement("label");
+            label.textContent = action;
+            let div = document.createElement("div");
+            div.append(btn, label);
+            btnContainer.append(div);
+        }
+        return btnContainer;
     }
 }
