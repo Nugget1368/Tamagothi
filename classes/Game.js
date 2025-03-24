@@ -75,11 +75,8 @@ export class Game {
         let fullness = article.querySelector("label.fullness");
         let happiness = article.querySelector("label.happiness");
         energy.textContent = `Energy: ${pet.energy}`;
-        // this.setStatBar("energy", pet);
         fullness.textContent = `Fullness: ${pet.fullness}`;
-        // this.setStatBar("fullness", pet);
         happiness.textContent = `Happiness: ${pet.happiness}`;
-        // this.setStatBar("happiness", pet);
         this.setStatBar(["energy", "fullness", "happiness"], pet);
     }
 
