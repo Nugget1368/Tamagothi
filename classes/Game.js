@@ -10,7 +10,7 @@ export class Game {
     renderPet = (pet = {}) => {
         Builder.buildPet(pet);
         this.setPetBtnActions(pet);
-        this.setStatBar(["energy", "fullness", "happiness"], pet);
+        this.updatePetValues(pet);
     }
 
     startGame = () => {
@@ -34,7 +34,7 @@ export class Game {
                 this.renderPet(pet);
                 Builder.buildHistory(`Adopted ${pet.type} ${pet.name} as your pet.`);
             }
-            else{
+            else {
                 chatBubble.displayText(`bubble-${this.pets[0].name}`, `Slow down partner! You can only have 4 pets at a time!`);
                 Builder.buildHistory(`Could not adopt ${pet.type} ${pet.name}. You can only have 4 pets at a time.  But you can always kill one to get more room ;)`);
             }
@@ -96,27 +96,36 @@ export class Game {
     updatePetValues = (pet = {}) => {
         let article = document.querySelector(`article#pet-${pet.name}`);
         let values = ["energy", "fullness", "happiness"];
-        values.forEach((v) =>{
-            article.querySelector(`label.${v}`).textContent = `${v.toLocaleUpperCase()}: ${pet[v]}`;
-            article.querySelector(`#${v}-bar-${pet.name} .fill`).style.width = `${pet[v]}%`;
-        })
+        if (article) {
+            values.forEach((v) => {
+                article.querySelector(`label.${v}`).textContent = `${v.toLocaleUpperCase()}: ${pet[v]}`;
+                article.querySelector(`#${v}-bar-${pet.name} .fill`).style.width = `${pet[v]}%`;
+            })
+        }
     }
 
-    statsTimer(pet = {}){
+    statsTimer(pet = {}) {
         let intervalId = setInterval(() => {
-           pet.decreaseAllValues();
-           this.updatePetValues(pet);
-           if(!pet.checkValues()){
-            this.removePet(pet);
-            clearInterval(intervalId);
-           };
+            if (pet) {
+                pet.decreaseAllValues();
+                this.updatePetValues(pet);
+                if (pet && (!pet.checkValues())) {
+                    this.removePet(pet);
+                    clearInterval(intervalId);
+                };
+            }
+            else {
+                clearInterval(intervalId);
+            }
         }, 10000);
     }
 
     removePet = (pet = {}) => {
         this.pets.splice(this.pets.indexOf(pet), 1);
         let article = document.querySelector(`article#pet-${pet.name}`);
-        article.remove();
-        Builder.buildHistory(`You abandoned ${pet.type} ${pet.name}.`);
+        if(article){
+            article.remove();
+            Builder.buildHistory(`You abandoned ${pet.type} ${pet.name}.`);
+        }
     }
 }
