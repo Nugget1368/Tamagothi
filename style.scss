@@ -79,7 +79,9 @@ aside{
 article.tamagotchi {
   width: 250px;
   margin: 16px;
-  box-shadow: 3px 3px 5px #000;
+  >div{
+    box-shadow: 3px 3px 5px #000;
+  }
   div {
     @include flex(column);
     background-color: $primary-300;
