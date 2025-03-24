@@ -43,6 +43,7 @@ export class Game {
             pet = new Panda(name);
         else if (type == "Toilet")
             pet = new Toilet(name);
+        Builder.buildHistory(`Adopted ${pet.type} ${pet.name} as your pet.`);
         return pet;
     }
 
