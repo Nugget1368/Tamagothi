@@ -87,6 +87,7 @@ article.tamagotchi .chat-bubble {
   border: 1px solid #272929;
   border-radius: 1.5rem;
   border-bottom-right-radius: 0px;
+  opacity: 0.95;
 }
 article.tamagotchi .hide {
   display: none;
