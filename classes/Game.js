@@ -6,6 +6,7 @@ export class Game {
     static renderPet = (pet = {}) => {
         Builder.buildPet(pet);
         Game.setPetBtnActions(pet);
+        this.setStatBar(["energy", "fullness", "happiness"], pet);
     }
 
     static startGame = (pets = []) => {
@@ -70,11 +71,19 @@ export class Game {
 
     static updatePetValues = (pet = {}) => {
         let article = document.querySelector(`article#pet-${pet.name}`);
-        let energy = article.querySelector("label:nth-child(2)");
-        let fullness = article.querySelector("label:nth-child(3)");
-        let happiness = article.querySelector("label:nth-child(4)");
-        energy.textContent = `Energy: ${pet.energy}`; 
-        fullness.textContent = `Fullness: ${pet.fullness}`; 
-        happiness.textContent = `Happiness: ${pet.happiness}`; 
+        let energy = article.querySelector("label.energy");
+        let fullness = article.querySelector("label.fullness");
+        let happiness = article.querySelector("label.happiness");
+        energy.textContent = `Energy: ${pet.energy}`;
+        fullness.textContent = `Fullness: ${pet.fullness}`;
+        happiness.textContent = `Happiness: ${pet.happiness}`;
+        this.setStatBar(["energy", "fullness", "happiness"], pet);
+    }
+
+    static setStatBar = (statNames = [], pet = {}) => {
+        statNames.forEach((statName) =>{
+            let stat = document.querySelector(`#${statName}-bar-${pet.name} .fill`);
+            stat.style.width = `${pet[statName]}%`;
+        })
     }
 }
