@@ -37,9 +37,9 @@ article.tamagotchi div {
   flex-flow: column;
   justify-content: flex-start;
   align-items: stretch;
-  box-sizing: border-box;
   background-color: #9a2257;
   padding: 10px;
+  box-sizing: border-box;
   border-radius: 5px;
 }
 article.tamagotchi div > picture {
@@ -55,8 +55,7 @@ article.tamagotchi div > picture {
   box-shadow: 8px 8px 15px #000 inset, -8px -8px 15px #000 inset;
 }
 article.tamagotchi div > div {
-  background-color: rgb(227, 237, 235);
-  border-radius: 0px;
+  background-color: #272929;
 }
 article.tamagotchi div .btn-container {
   display: flex;
@@ -78,6 +77,20 @@ article.tamagotchi div .btn-container > div {
 article.tamagotchi div .btn-container button {
   background-color: #9a2257;
 }
+article.tamagotchi .stat-bar {
+  width: 100%;
+  height: 20px;
+  border: 2px solid rgb(245, 250, 249);
+  padding: 0px;
+  margin: 5px 0px;
+  background-color: rgb(217, 228, 226);
+}
+article.tamagotchi .stat-bar .fill {
+  height: 100%;
+  width: 0%;
+  padding: 0px;
+  background-color: #ef476f;
+}
 article.tamagotchi .chat-bubble {
   display: block;
   position: absolute;
@@ -92,6 +105,10 @@ article.tamagotchi .chat-bubble {
 }
 article.tamagotchi .hide {
   display: none;
+}
+article.tamagotchi div.content {
+  color: rgb(245, 250, 249);
+  border: 5px solid #0b4b60;
 }
 
 dialog fieldset {
@@ -137,5 +154,19 @@ button:active {
 }
 
 .primary-btn {
+  background-color: #06d6a0;
+}
+
+.stat-bar {
+  width: 100%;
+  height: 20px;
+  border: 2px solid rgb(245, 250, 249);
+  padding: 0px;
+  margin: 0px;
+  background-color: #ef476f;
+}
+.stat-bar .fill {
+  height: 100%;
+  width: 10%;
   background-color: #06d6a0;
 }/*# sourceMappingURL=style.css.map */

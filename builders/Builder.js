@@ -12,13 +12,17 @@ export class Builder {
         name.textContent = `Name: ${pet.name}`;
         let energy = document.createElement("label");
         energy.textContent = `Energy: ${pet.energy}`;
+        let energyBar = this.buildStatBar("energy", pet.name);
         let fullness = document.createElement("label");
         fullness.textContent = `Fullness: ${pet.fullness}`;
+        let fullnessBar = this.buildStatBar("fullness", pet.name);
         let happiness = document.createElement("label");
         happiness.textContent = `Happiness: ${pet.happiness}`;
+        let happinessBar = this.buildStatBar("happiness", pet.name);
         let div = document.createElement("div");
         let content = document.createElement("div");
-        content.append(name, energy, fullness, happiness);
+        content.classList.add("content");
+        content.append(name, energy, energyBar, fullness, fullnessBar, happiness, happinessBar);
         let btns = Builder.buildPetBtns(pet);
         btns.classList.add("btn-container");
         div.append(picture, content, btns);
@@ -30,7 +34,7 @@ export class Builder {
 
     static buildPetBtns = (pet) => {
         let btnContainer = document.createElement("div");
-        for(let x = 0; x < 3; x++) {
+        for (let x = 0; x < 3; x++) {
             let btn = document.createElement("button");
             let action = x == 0 ? "Nap" : x == 1 ? "Play" : "Feed";
             btn.classList.add("pet-btn");
@@ -51,5 +55,15 @@ export class Builder {
         bubble.classList.add("chat-bubble");
         bubble.classList.add("hide");
         return bubble;
+    }
+
+    static buildStatBar = (stat = "", id = "") => {
+        let statBar = document.createElement("div");
+        statBar.classList.add("stat-bar");
+        statBar.setAttribute("id", `${stat}-bar-${id}`);
+        let fill = document.createElement("div");
+        fill.classList.add("fill");
+        statBar.append(fill);
+        return statBar;
     }
 }
