@@ -95,13 +95,11 @@ export class Game {
 
     updatePetValues = (pet = {}) => {
         let article = document.querySelector(`article#pet-${pet.name}`);
-        let energy = article.querySelector("label.energy");
-        let fullness = article.querySelector("label.fullness");
-        let happiness = article.querySelector("label.happiness");
-        energy.textContent = `Energy: ${pet.energy}`;
-        fullness.textContent = `Fullness: ${pet.fullness}`;
-        happiness.textContent = `Happiness: ${pet.happiness}`;
-        this.setStatBar(["energy", "fullness", "happiness"], pet);
+        let values = ["energy", "fullness", "happiness"];
+        values.forEach((v) =>{
+            article.querySelector(`label.${v}`).textContent = `${v.toLocaleUpperCase()}: ${pet[v]}`;
+            article.querySelector(`#${v}-bar-${pet.name} .fill`).style.width = `${pet[v]}%`;
+        })
     }
 
     statsTimer(pet = {}){
@@ -113,13 +111,6 @@ export class Game {
             clearInterval(intervalId);
            };
         }, 10000);
-    }
-
-    setStatBar = (statNames = [], pet = {}) => {
-        statNames.forEach((statName) => {
-            let stat = document.querySelector(`#${statName}-bar-${pet.name} .fill`);
-            stat.style.width = `${pet[statName]}%`;
-        })
     }
 
     removePet = (pet = {}) => {
