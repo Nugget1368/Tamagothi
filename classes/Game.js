@@ -47,13 +47,14 @@ export class Game {
         let type = document.querySelector("#type").value;
         let pet = {};
         if (type == "Cat")
-            pet = new Cat(name);
+            pet = new Cat(name, this.pets);
         else if (type == "Fox")
-            pet = new Fox(name);
+            pet = new Fox(name, this.pets);
         else if (type == "Panda")
-            pet = new Panda(name);
+            pet = new Panda(name, this.pets);
         else if (type == "Toilet")
-            pet = new Toilet(name);
+            pet = new Toilet(name, this.pets);
+        this.statsTimer(pet);
         return pet;
     }
 
@@ -103,6 +104,19 @@ export class Game {
         this.setStatBar(["energy", "fullness", "happiness"], pet);
     }
 
+    statsTimer(pet = {}){
+        let intervalId = setInterval(() => {
+           pet.energy -= 15;
+           pet.fullness -= 15; 
+           pet.happiness -= 15;
+           this.updatePetValues(pet);
+           if(!pet.checkValues()){
+            this.removePet(pet);
+            clearInterval(intervalId);
+           };
+        }, 10000);
+    }
+
     setStatBar = (statNames = [], pet = {}) => {
         statNames.forEach((statName) => {
             let stat = document.querySelector(`#${statName}-bar-${pet.name} .fill`);
@@ -111,9 +125,7 @@ export class Game {
     }
 
     removePet = (pet = {}) => {
-        console.log(this.pets);
         this.pets.splice(this.pets.indexOf(pet), 1);
-        console.log(this.pets);
         let article = document.querySelector(`article#pet-${pet.name}`);
         article.remove();
         Builder.buildHistory(`You abandoned ${pet.type} ${pet.name}.`);

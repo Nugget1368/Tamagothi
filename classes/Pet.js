@@ -1,5 +1,6 @@
 class Pet {
     constructor(name = "Nameless") {
+        this.id = `pet-${name}`;
         this.name = name;
         this.energy = 50;
         this.fullness = 50;
@@ -52,7 +53,6 @@ class Pet {
             this.fullness = 100;
         if (this.happiness > 100)
             this.happiness = 100;
-
         if (this.energy === 0 || this.fullness === 0 || this.happiness === 0) {
             return false;
         }
