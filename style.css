@@ -30,6 +30,7 @@ a {
 
 article.tamagotchi {
   width: 250px;
+  margin: 16px;
 }
 article.tamagotchi div {
   display: flex;
