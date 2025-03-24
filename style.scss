@@ -9,6 +9,8 @@ body,
 main {
   min-height: 100vh;
   background-color: $white-300;
+  padding: 0;
+  margin: 0;
 }
 
 main {
@@ -23,6 +25,49 @@ section {
 span,
 a {
   cursor: pointer;
+}
+
+aside{
+  @include flex(column);
+  background-color: rgb(240, 229, 183);
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 200px;
+  height: 100vh;
+  position: sticky;
+  left:0px;
+  top:0px;
+  border: 2px solid $black-500;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  header{
+    width: 100%;
+    border-bottom: 2px solid $black-500;
+    margin-top: 16px;
+    h1, h2{
+      margin: 5px;
+    }
+  }
+  section>header{
+    color: $black-200;
+    border-color: $black-200;
+  }
+  section{
+    margin: 0;
+  }
+}
+
+.row{
+  @include flex(row);
+  box-sizing: border-box;
+  margin: 0;
+  aside{
+    flex: 1;
+  }
+  main{
+    flex: 5;
+  }
 }
 
 article.tamagotchi {
