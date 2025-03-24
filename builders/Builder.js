@@ -69,4 +69,10 @@ export class Builder {
         statBar.append(fill);
         return statBar;
     }
+    static buildHistory = (text) => {
+        let li = document.createElement("li");
+        li.textContent = text;
+        let ul = document.querySelector("#history");
+        ul.append(li);
+    }
 }

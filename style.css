@@ -30,6 +30,11 @@ a {
   cursor: pointer;
 }
 
+ul {
+  padding: 5px;
+  margin: 10px;
+}
+
 aside {
   display: flex;
   flex-flow: column;
@@ -62,6 +67,7 @@ aside section > header {
 }
 aside section {
   margin: 0;
+  justify-content: flex-start;
 }
 
 .row {
@@ -73,7 +79,7 @@ aside section {
   margin: 0;
 }
 .row aside {
-  flex: 1;
+  flex: 2;
 }
 .row main {
   flex: 5;
@@ -82,6 +88,7 @@ aside section {
 article.tamagotchi {
   width: 250px;
   margin: 16px;
+  box-shadow: 3px 3px 5px #000;
 }
 article.tamagotchi div {
   display: flex;

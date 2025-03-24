@@ -56,16 +56,19 @@ export class Game {
             let response = pet.nap();
             chatBubble.displayText(`bubble-${pet.name}`, response);
             this.updatePetValues(pet);
+            Builder.buildHistory(response);
         });
         playBtn.addEventListener("click", () => {
             let response = pet.play();
             chatBubble.displayText(`bubble-${pet.name}`, response);
             this.updatePetValues(pet);
+            Builder.buildHistory(response);
         });
         feedBtn.addEventListener("click", () => {
             let response = pet.eat();
             chatBubble.displayText(`bubble-${pet.name}`, response);
             this.updatePetValues(pet);
+            Builder.buildHistory(response);
         });
     }
 

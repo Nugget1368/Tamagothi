@@ -27,6 +27,11 @@ a {
   cursor: pointer;
 }
 
+ul{
+  padding: 5px;
+  margin: 10px;
+}
+
 aside{
   @include flex(column);
   background-color: rgb(240, 229, 183);
@@ -55,6 +60,7 @@ aside{
   }
   section{
     margin: 0;
+    justify-content: flex-start;
   }
 }
 
@@ -63,7 +69,7 @@ aside{
   box-sizing: border-box;
   margin: 0;
   aside{
-    flex: 1;
+    flex: 2;
   }
   main{
     flex: 5;
@@ -73,6 +79,7 @@ aside{
 article.tamagotchi {
   width: 250px;
   margin: 16px;
+  box-shadow: 3px 3px 5px #000;
   div {
     @include flex(column);
     background-color: $primary-300;
