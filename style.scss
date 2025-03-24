@@ -25,7 +25,7 @@ a {
 }
 
 article.tamagotchi {
-  width: 200px;
+  width: 250px;
   div {
     @include flex(column);
     box-sizing: border-box;
@@ -44,6 +44,23 @@ article.tamagotchi {
     > div {
       background-color: $white-400;
       border-radius: 0px;
+    }
+    .btn-container {
+      @include flex($justify:space-evenly);
+      color: $white-400;
+      margin-top: 5px;
+      gap: 5px;
+      background-color: $black-500;
+      border-radius: 10px;
+      padding: 3px;
+      border: 5px solid $primary-400;
+      >div{
+        padding: 0px;
+        background-color: $black-500;
+      }
+      button{
+        background-color: $primary-300;
+      }
     }
   }
 }
@@ -65,12 +82,18 @@ dialog{
 button {
   padding: 6px;
   box-shadow: 1px 1px #000;
-  transition: 0.1;
+  transition: 0.1 !important;
   border-width: 2px;
   &:active {
     transform: translate(1px, 1px);
     box-shadow: 2px 2px 3px #fff inset, -2px -2px 3px#fff inset;
   }
+}
+
+.pet-btn{
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
 }
 
 .warning-btn {
