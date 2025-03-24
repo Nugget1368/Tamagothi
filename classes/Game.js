@@ -47,9 +47,7 @@ export class Game {
 
     static setPetBtnActions = (pet = {}) => {
         let article = document.querySelector(`article#pet-${pet.name}`);
-        console.log(article);
         let napBtn = article.querySelector(`button#Nap-${pet.name}`);
-        console.log(napBtn);
         let playBtn = article.querySelector(`button#Play-${pet.name}`);
         let feedBtn = article.querySelector(`button#Feed-${pet.name}`);
 
