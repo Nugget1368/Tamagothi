@@ -3,17 +3,21 @@ import { Builder } from "../builders/Builder.js";
 import { chatBubble } from "./ChatBubble.js";
 
 export class Game {
-    static renderPet = (pet = {}) => {
+    constructor() {
+        this.pets = [];
+    }
+
+     renderPet = (pet = {}) => {
         Builder.buildPet(pet);
-        Game.setPetBtnActions(pet);
+        this.setPetBtnActions(pet);
         this.setStatBar(["energy", "fullness", "happiness"], pet);
     }
 
-    static startGame = (pets = []) => {
+    startGame = () => {
         // Build stored pets
-        if (pets.length > 0) {
-            pets.forEach((pet) => {
-                Game.renderPet(pet);
+        if (this.pets.length > 0) {
+            this.pets.forEach((pet) => {
+                this.renderPet(pet);
             });
         };
         // Add eventlisteners
@@ -24,14 +28,15 @@ export class Game {
         closeModalBtn.addEventListener("click", () => modal.close());
         let confirmBtn = document.querySelector("dialog[data-modal] button.primary-btn");
         confirmBtn.addEventListener("click", () => {
-            let pet = Game.addPet();
-            pets.push(pet);
-            Game.renderPet(pet);
+            let pet = this.addPet();
+            this.pets.push(pet);
+            console.log(this.pets);
+            this.renderPet(pet);
             modal.close();
         });
     }
 
-    static addPet = () => {
+     addPet = () => {
         let name = document.querySelector("#name").value;
         let type = document.querySelector("#type").value;
         let pet = {};
@@ -47,7 +52,7 @@ export class Game {
         return pet;
     }
 
-    static setPetBtnActions = (pet = {}) => {
+     setPetBtnActions = (pet = {}) => {
         let article = document.querySelector(`article#pet-${pet.name}`);
         let napBtn = article.querySelector(`button#Nap-${pet.name}`);
         let playBtn = article.querySelector(`button#Play-${pet.name}`);
@@ -58,22 +63,31 @@ export class Game {
             chatBubble.displayText(`bubble-${pet.name}`, response);
             this.updatePetValues(pet);
             Builder.buildHistory(response);
+            if(response.includes("ran away.")) {
+                this.removePet(pet);
+            }
         });
         playBtn.addEventListener("click", () => {
             let response = pet.play();
             chatBubble.displayText(`bubble-${pet.name}`, response);
             this.updatePetValues(pet);
             Builder.buildHistory(response);
+            if(response.includes("ran away.")) {
+                this.removePet(pet);
+            }
         });
         feedBtn.addEventListener("click", () => {
             let response = pet.eat();
             chatBubble.displayText(`bubble-${pet.name}`, response);
             this.updatePetValues(pet);
             Builder.buildHistory(response);
+            if(response.includes("ran away.")) {
+                this.removePet(pet);
+            }
         });
     }
 
-    static updatePetValues = (pet = {}) => {
+     updatePetValues = (pet = {}) => {
         let article = document.querySelector(`article#pet-${pet.name}`);
         let energy = article.querySelector("label.energy");
         let fullness = article.querySelector("label.fullness");
@@ -84,10 +98,19 @@ export class Game {
         this.setStatBar(["energy", "fullness", "happiness"], pet);
     }
 
-    static setStatBar = (statNames = [], pet = {}) => {
+     setStatBar = (statNames = [], pet = {}) => {
         statNames.forEach((statName) =>{
             let stat = document.querySelector(`#${statName}-bar-${pet.name} .fill`);
             stat.style.width = `${pet[statName]}%`;
         })
+    }
+
+     removePet = (pet = {}) => {
+        console.log(this.pets);
+        this.pets.splice(this.pets.indexOf(pet), 1);
+        console.log(this.pets);
+        let article = document.querySelector(`article#pet-${pet.name}`);
+        article.remove();
+        Builder.buildHistory(`You abandoned ${pet.type} ${pet.name}.`);
     }
 }

@@ -7,8 +7,10 @@ export class chatBubble{
 
     static closeBubble = (id) => {
         let bubble = document.querySelector(`.chat-bubble#${id}`);
-        bubble.innerHTML = ``;
-        bubble.classList.add("hide");
+        if(bubble){
+            bubble.innerHTML = ``;
+            bubble.classList.add("hide");
+        }
     }
 
     static displayText = (id, text = "") =>{
