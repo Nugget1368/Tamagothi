@@ -8,6 +8,7 @@
 body,
 main {
   min-height: 100vh;
+  background-color: $white-300;
 }
 
 main {
@@ -69,7 +70,8 @@ article.tamagotchi {
     min-width: 80px;
     min-height: 40px;
     transform: translate(-60%, -50%);
-    background: antiquewhite;
+    background: $white-200;
+    border: 1px solid $black-500;
     border-radius: 1.5rem;
     border-bottom-right-radius: 0px;
   }
