@@ -5,6 +5,7 @@
 body,
 main {
   min-height: 100vh;
+  background-color: rgb(238, 247, 245);
 }
 
 main {
@@ -29,6 +30,7 @@ a {
 
 article.tamagotchi {
   width: 250px;
+  margin: 16px;
 }
 article.tamagotchi div {
   display: flex;
@@ -75,6 +77,21 @@ article.tamagotchi div .btn-container > div {
 }
 article.tamagotchi div .btn-container button {
   background-color: #9a2257;
+}
+article.tamagotchi .chat-bubble {
+  display: block;
+  position: absolute;
+  min-width: 80px;
+  min-height: 40px;
+  transform: translate(-60%, -50%);
+  background: rgb(245, 250, 249);
+  border: 1px solid #272929;
+  border-radius: 1.5rem;
+  border-bottom-right-radius: 0px;
+  opacity: 0.95;
+}
+article.tamagotchi .hide {
+  display: none;
 }
 
 dialog fieldset {
