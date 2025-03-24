@@ -79,10 +79,10 @@ aside section {
   margin: 0;
 }
 .row aside {
-  flex: 2;
+  flex: 1;
 }
 .row main {
-  flex: 5;
+  flex: 4;
 }
 
 article.tamagotchi {
