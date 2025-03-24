@@ -10,7 +10,7 @@ export class Game {
     renderPet = (pet = {}) => {
         Builder.buildPet(pet);
         this.setPetBtnActions(pet);
-        this.setStatBar(["energy", "fullness", "happiness"], pet);
+        this.updatePetValues(pet);
     }
 
     startGame = () => {
@@ -34,7 +34,7 @@ export class Game {
                 this.renderPet(pet);
                 Builder.buildHistory(`Adopted ${pet.type} ${pet.name} as your pet.`);
             }
-            else{
+            else {
                 chatBubble.displayText(`bubble-${this.pets[0].name}`, `Slow down partner! You can only have 4 pets at a time!`);
                 Builder.buildHistory(`Could not adopt ${pet.type} ${pet.name}. You can only have 4 pets at a time.  But you can always kill one to get more room ;)`);
             }
@@ -47,13 +47,14 @@ export class Game {
         let type = document.querySelector("#type").value;
         let pet = {};
         if (type == "Cat")
-            pet = new Cat(name);
+            pet = new Cat(name, this.pets);
         else if (type == "Fox")
-            pet = new Fox(name);
+            pet = new Fox(name, this.pets);
         else if (type == "Panda")
-            pet = new Panda(name);
+            pet = new Panda(name, this.pets);
         else if (type == "Toilet")
-            pet = new Toilet(name);
+            pet = new Toilet(name, this.pets);
+        this.statsTimer(pet);
         return pet;
     }
 
@@ -94,28 +95,37 @@ export class Game {
 
     updatePetValues = (pet = {}) => {
         let article = document.querySelector(`article#pet-${pet.name}`);
-        let energy = article.querySelector("label.energy");
-        let fullness = article.querySelector("label.fullness");
-        let happiness = article.querySelector("label.happiness");
-        energy.textContent = `Energy: ${pet.energy}`;
-        fullness.textContent = `Fullness: ${pet.fullness}`;
-        happiness.textContent = `Happiness: ${pet.happiness}`;
-        this.setStatBar(["energy", "fullness", "happiness"], pet);
+        let values = ["energy", "fullness", "happiness"];
+        if (article) {
+            values.forEach((v) => {
+                article.querySelector(`label.${v}`).textContent = `${v.charAt(0).toUpperCase() + v.slice(1)}: ${pet[v]}`;
+                article.querySelector(`#${v}-bar-${pet.name} .fill`).style.width = `${pet[v]}%`;
+            })
+        }
     }
 
-    setStatBar = (statNames = [], pet = {}) => {
-        statNames.forEach((statName) => {
-            let stat = document.querySelector(`#${statName}-bar-${pet.name} .fill`);
-            stat.style.width = `${pet[statName]}%`;
-        })
+    statsTimer(pet = {}) {
+        let intervalId = setInterval(() => {
+            if (pet) {
+                pet.decreaseAllValues();
+                this.updatePetValues(pet);
+                if (pet && (!pet.checkValues())) {
+                    this.removePet(pet);
+                    clearInterval(intervalId);
+                };
+            }
+            else {
+                clearInterval(intervalId);
+            }
+        }, 10000);
     }
 
     removePet = (pet = {}) => {
-        console.log(this.pets);
         this.pets.splice(this.pets.indexOf(pet), 1);
-        console.log(this.pets);
         let article = document.querySelector(`article#pet-${pet.name}`);
-        article.remove();
-        Builder.buildHistory(`You abandoned ${pet.type} ${pet.name}.`);
+        if(article){
+            article.remove();
+            Builder.buildHistory(`You abandoned ${pet.type} ${pet.name}.`);
+        }
     }
 }
