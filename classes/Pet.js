@@ -1,5 +1,6 @@
 class Pet {
     constructor(name = "Nameless") {
+        this.id = `pet-${name}`;
         this.name = name;
         this.energy = 50;
         this.fullness = 50;
@@ -10,24 +11,37 @@ class Pet {
         this.energy += 40;
         this.happiness -= 10;
         this.fullness -= 10;
-        this.checkValues();
-        return `You took a nap with ${this.name}.`;
+        if (this.checkValues())
+            return `You took a nap with ${this.name}.`;
+        return this.runAway();
     }
 
     play() {
         this.energy -= 10;
         this.happiness += 30;
         this.fullness -= 10;
-        this.checkValues();
-        return `You played with ${this.name}.`;
+        if (this.checkValues())
+            return `You played with ${this.name}.`;
+        return this.runAway();
     }
 
     eat() {
         this.energy -= 15;
         this.happiness += 5;
         this.fullness += 30;
-        this.checkValues();
-        return `You fed ${this.name}.`;
+        if (this.checkValues())
+            return `You fed ${this.name}.`;
+        return this.runAway();
+    }
+
+    decreaseAllValues() {
+        this.energy -= 15;
+        this.fullness -= 15; 
+        this.happiness -= 15;
+    }
+
+    runAway() {
+        return `${this.name} ran away.`;
     }
 
     checkValues() {
@@ -45,6 +59,10 @@ class Pet {
             this.fullness = 100;
         if (this.happiness > 100)
             this.happiness = 100;
+        if (this.energy === 0 || this.fullness === 0 || this.happiness === 0) {
+            return false;
+        }
+        return true;
     }
 }
 

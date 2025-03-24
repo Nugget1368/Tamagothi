@@ -11,25 +11,33 @@ export class Builder {
         let name = document.createElement("label");
         name.textContent = `Name: ${pet.name}`;
         let energy = document.createElement("label");
+        energy.classList.add("energy");
         energy.textContent = `Energy: ${pet.energy}`;
+        let energyBar = this.buildStatBar("energy", pet.name);
         let fullness = document.createElement("label");
+        fullness.classList.add("fullness");
         fullness.textContent = `Fullness: ${pet.fullness}`;
+        let fullnessBar = this.buildStatBar("fullness", pet.name);
         let happiness = document.createElement("label");
+        happiness.classList.add("happiness");
         happiness.textContent = `Happiness: ${pet.happiness}`;
+        let happinessBar = this.buildStatBar("happiness", pet.name);
         let div = document.createElement("div");
         let content = document.createElement("div");
-        content.append(name, energy, fullness, happiness);
+        content.classList.add("content");
+        content.append(name, energy, energyBar, fullness, fullnessBar, happiness, happinessBar);
         let btns = Builder.buildPetBtns(pet);
         btns.classList.add("btn-container");
         div.append(picture, content, btns);
-        article.append(div);
+        let chatBubble = this.buildChatBubble(pet);
+        article.append(chatBubble, div);
         let section = document.querySelector("main section[data-pets]");
         section.append(article);
     }
 
     static buildPetBtns = (pet) => {
         let btnContainer = document.createElement("div");
-        for(let x = 0; x < 3; x++) {
+        for (let x = 0; x < 3; x++) {
             let btn = document.createElement("button");
             let action = x == 0 ? "Nap" : x == 1 ? "Play" : "Feed";
             btn.classList.add("pet-btn");
@@ -42,5 +50,29 @@ export class Builder {
             btnContainer.append(div);
         }
         return btnContainer;
+    }
+
+    static buildChatBubble = (pet) => {
+        let bubble = document.createElement("div");
+        bubble.setAttribute("id", `bubble-${pet.name}`);
+        bubble.classList.add("chat-bubble");
+        bubble.classList.add("hide");
+        return bubble;
+    }
+
+    static buildStatBar = (stat = "", id = "") => {
+        let statBar = document.createElement("div");
+        statBar.classList.add("stat-bar");
+        statBar.setAttribute("id", `${stat}-bar-${id}`);
+        let fill = document.createElement("div");
+        fill.classList.add("fill");
+        statBar.append(fill);
+        return statBar;
+    }
+    static buildHistory = (text) => {
+        let li = document.createElement("li");
+        li.textContent = text;
+        let ul = document.querySelector("#history");
+        ul.append(li);
     }
 }
