@@ -29,7 +29,7 @@ export class Game {
         let confirmBtn = document.querySelector("dialog[data-modal] button.primary-btn");
         confirmBtn.addEventListener("click", () => {
             let pet = this.addPet();
-            if (this.pets.length < 5) {
+            if (this.pets.length < 4) {
                 this.pets.push(pet);
                 this.renderPet(pet);
                 Builder.buildHistory(`Adopted ${pet.type} ${pet.name} as your pet.`);
