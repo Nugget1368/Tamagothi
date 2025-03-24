@@ -11,12 +11,15 @@ export class Builder {
         let name = document.createElement("label");
         name.textContent = `Name: ${pet.name}`;
         let energy = document.createElement("label");
+        energy.classList.add("energy");
         energy.textContent = `Energy: ${pet.energy}`;
         let energyBar = this.buildStatBar("energy", pet.name);
         let fullness = document.createElement("label");
+        fullness.classList.add("fullness");
         fullness.textContent = `Fullness: ${pet.fullness}`;
         let fullnessBar = this.buildStatBar("fullness", pet.name);
         let happiness = document.createElement("label");
+        happiness.classList.add("happiness");
         happiness.textContent = `Happiness: ${pet.happiness}`;
         let happinessBar = this.buildStatBar("happiness", pet.name);
         let div = document.createElement("div");
