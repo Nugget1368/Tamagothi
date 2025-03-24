@@ -7,10 +7,16 @@ export class Game {
         this.pets = [];
     }
 
-     renderPet = (pet = {}) => {
-        Builder.buildPet(pet);
-        this.setPetBtnActions(pet);
-        this.setStatBar(["energy", "fullness", "happiness"], pet);
+    renderPet = (pet = {}) => {
+        if (this.pets.length < 5) {
+            Builder.buildPet(pet);
+            this.setPetBtnActions(pet);
+            this.setStatBar(["energy", "fullness", "happiness"], pet);
+        }
+        else{
+            chatBubble.displayText(`bubble-${this.pets[0].name}`, `Slow down partner! You can only have 4 pets at a time!`);
+            Builder.buildHistory(`Could not adopt ${pet.type} ${pet.name}. You can only have 4 pets at a time.  But you can always kill one to get more room ;)`);
+        }
     }
 
     startGame = () => {
@@ -36,7 +42,7 @@ export class Game {
         });
     }
 
-     addPet = () => {
+    addPet = () => {
         let name = document.querySelector("#name").value;
         let type = document.querySelector("#type").value;
         let pet = {};
@@ -52,7 +58,7 @@ export class Game {
         return pet;
     }
 
-     setPetBtnActions = (pet = {}) => {
+    setPetBtnActions = (pet = {}) => {
         let article = document.querySelector(`article#pet-${pet.name}`);
         let napBtn = article.querySelector(`button#Nap-${pet.name}`);
         let playBtn = article.querySelector(`button#Play-${pet.name}`);
@@ -63,7 +69,7 @@ export class Game {
             chatBubble.displayText(`bubble-${pet.name}`, response);
             this.updatePetValues(pet);
             Builder.buildHistory(response);
-            if(response.includes("ran away.")) {
+            if (response.includes("ran away.")) {
                 this.removePet(pet);
             }
         });
@@ -72,7 +78,7 @@ export class Game {
             chatBubble.displayText(`bubble-${pet.name}`, response);
             this.updatePetValues(pet);
             Builder.buildHistory(response);
-            if(response.includes("ran away.")) {
+            if (response.includes("ran away.")) {
                 this.removePet(pet);
             }
         });
@@ -81,13 +87,13 @@ export class Game {
             chatBubble.displayText(`bubble-${pet.name}`, response);
             this.updatePetValues(pet);
             Builder.buildHistory(response);
-            if(response.includes("ran away.")) {
+            if (response.includes("ran away.")) {
                 this.removePet(pet);
             }
         });
     }
 
-     updatePetValues = (pet = {}) => {
+    updatePetValues = (pet = {}) => {
         let article = document.querySelector(`article#pet-${pet.name}`);
         let energy = article.querySelector("label.energy");
         let fullness = article.querySelector("label.fullness");
@@ -98,14 +104,14 @@ export class Game {
         this.setStatBar(["energy", "fullness", "happiness"], pet);
     }
 
-     setStatBar = (statNames = [], pet = {}) => {
-        statNames.forEach((statName) =>{
+    setStatBar = (statNames = [], pet = {}) => {
+        statNames.forEach((statName) => {
             let stat = document.querySelector(`#${statName}-bar-${pet.name} .fill`);
             stat.style.width = `${pet[statName]}%`;
         })
     }
 
-     removePet = (pet = {}) => {
+    removePet = (pet = {}) => {
         console.log(this.pets);
         this.pets.splice(this.pets.indexOf(pet), 1);
         console.log(this.pets);

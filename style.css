@@ -153,6 +153,7 @@ article.tamagotchi .chat-bubble {
   display: block;
   position: absolute;
   min-width: 80px;
+  max-width: 260px;
   min-height: 40px;
   transform: translate(-60%, -50%);
   background: rgb(245, 250, 249);
