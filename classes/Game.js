@@ -1,5 +1,6 @@
 import { Cat, Fox, Panda, Toilet } from "./Pet.js"
 import { Builder } from "../builders/Builder.js";
+import { chatBubble } from "./ChatBubble.js";
 
 export class Game {
     static renderPet = (pet = {}) => {
@@ -53,18 +54,18 @@ export class Game {
         let feedBtn = article.querySelector(`button#Feed-${pet.name}`);
 
         napBtn.addEventListener("click", () => {
-            pet.nap();
-            console.log(pet);
+            let response = pet.nap();
+            chatBubble.displayText(`bubble-${pet.name}`, response);
             this.updatePetValues(pet);
         });
         playBtn.addEventListener("click", () => {
-            pet.play();
-            console.log(pet);
+            let response = pet.play();
+            chatBubble.displayText(`bubble-${pet.name}`, response);
             this.updatePetValues(pet);
         });
         feedBtn.addEventListener("click", () => {
-            pet.eat();
-            console.log(pet);
+            let response = pet.eat();
+            chatBubble.displayText(`bubble-${pet.name}`, response);
             this.updatePetValues(pet);
         });
     }

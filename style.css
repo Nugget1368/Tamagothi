@@ -76,6 +76,19 @@ article.tamagotchi div .btn-container > div {
 article.tamagotchi div .btn-container button {
   background-color: #9a2257;
 }
+article.tamagotchi .chat-bubble {
+  display: block;
+  position: absolute;
+  min-width: 80px;
+  min-height: 40px;
+  transform: translate(-60%, -50%);
+  background: antiquewhite;
+  border-radius: 1.5rem;
+  border-bottom-right-radius: 0px;
+}
+article.tamagotchi .hide {
+  display: none;
+}
 
 dialog fieldset {
   display: flex;

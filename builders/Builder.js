@@ -22,7 +22,8 @@ export class Builder {
         let btns = Builder.buildPetBtns(pet);
         btns.classList.add("btn-container");
         div.append(picture, content, btns);
-        article.append(div);
+        let chatBubble = this.buildChatBubble(pet);
+        article.append(chatBubble, div);
         let section = document.querySelector("main section[data-pets]");
         section.append(article);
     }
@@ -42,5 +43,13 @@ export class Builder {
             btnContainer.append(div);
         }
         return btnContainer;
+    }
+
+    static buildChatBubble = (pet) => {
+        let bubble = document.createElement("div");
+        bubble.setAttribute("id", `bubble-${pet.name}`);
+        bubble.classList.add("chat-bubble");
+        bubble.classList.add("hide");
+        return bubble;
     }
 }
