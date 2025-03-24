@@ -98,7 +98,7 @@ export class Game {
         let values = ["energy", "fullness", "happiness"];
         if (article) {
             values.forEach((v) => {
-                article.querySelector(`label.${v}`).textContent = `${v.toLocaleUpperCase()}: ${pet[v]}`;
+                article.querySelector(`label.${v}`).textContent = `${v.charAt(0).toUpperCase() + v.slice(1)}: ${pet[v]}`;
                 article.querySelector(`#${v}-bar-${pet.name} .fill`).style.width = `${pet[v]}%`;
             })
         }
