@@ -8,15 +8,9 @@ export class Game {
     }
 
     renderPet = (pet = {}) => {
-        if (this.pets.length < 5) {
-            Builder.buildPet(pet);
-            this.setPetBtnActions(pet);
-            this.setStatBar(["energy", "fullness", "happiness"], pet);
-        }
-        else{
-            chatBubble.displayText(`bubble-${this.pets[0].name}`, `Slow down partner! You can only have 4 pets at a time!`);
-            Builder.buildHistory(`Could not adopt ${pet.type} ${pet.name}. You can only have 4 pets at a time.  But you can always kill one to get more room ;)`);
-        }
+        Builder.buildPet(pet);
+        this.setPetBtnActions(pet);
+        this.setStatBar(["energy", "fullness", "happiness"], pet);
     }
 
     startGame = () => {
@@ -35,9 +29,15 @@ export class Game {
         let confirmBtn = document.querySelector("dialog[data-modal] button.primary-btn");
         confirmBtn.addEventListener("click", () => {
             let pet = this.addPet();
-            this.pets.push(pet);
-            console.log(this.pets);
-            this.renderPet(pet);
+            if (this.pets.length < 5) {
+                this.pets.push(pet);
+                this.renderPet(pet);
+                Builder.buildHistory(`Adopted ${pet.type} ${pet.name} as your pet.`);
+            }
+            else{
+                chatBubble.displayText(`bubble-${this.pets[0].name}`, `Slow down partner! You can only have 4 pets at a time!`);
+                Builder.buildHistory(`Could not adopt ${pet.type} ${pet.name}. You can only have 4 pets at a time.  But you can always kill one to get more room ;)`);
+            }
             modal.close();
         });
     }
@@ -54,7 +54,6 @@ export class Game {
             pet = new Panda(name);
         else if (type == "Toilet")
             pet = new Toilet(name);
-        Builder.buildHistory(`Adopted ${pet.type} ${pet.name} as your pet.`);
         return pet;
     }
 
