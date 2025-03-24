@@ -34,6 +34,12 @@ class Pet {
         return this.runAway();
     }
 
+    decreaseAllValues() {
+        this.energy -= 15;
+        this.fullness -= 15; 
+        this.happiness -= 15;
+    }
+
     runAway() {
         return `${this.name} ran away.`;
     }

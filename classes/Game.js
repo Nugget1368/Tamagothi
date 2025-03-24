@@ -106,9 +106,7 @@ export class Game {
 
     statsTimer(pet = {}){
         let intervalId = setInterval(() => {
-           pet.energy -= 15;
-           pet.fullness -= 15; 
-           pet.happiness -= 15;
+           pet.decreaseAllValues();
            this.updatePetValues(pet);
            if(!pet.checkValues()){
             this.removePet(pet);
