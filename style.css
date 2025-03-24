@@ -6,6 +6,8 @@ body,
 main {
   min-height: 100vh;
   background-color: rgb(238, 247, 245);
+  padding: 0;
+  margin: 0;
 }
 
 main {
@@ -28,9 +30,65 @@ a {
   cursor: pointer;
 }
 
+ul {
+  padding: 5px;
+  margin: 10px;
+}
+
+aside {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  background-color: rgb(240, 229, 183);
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 200px;
+  height: 100vh;
+  position: sticky;
+  left: 0px;
+  top: 0px;
+  border: 2px solid #272929;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+aside header {
+  width: 100%;
+  border-bottom: 2px solid #272929;
+  margin-top: 16px;
+}
+aside header h1, aside header h2 {
+  margin: 5px;
+}
+aside section > header {
+  color: #474949;
+  border-color: #474949;
+}
+aside section {
+  margin: 0;
+  justify-content: flex-start;
+}
+
+.row {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  box-sizing: border-box;
+  margin: 0;
+}
+.row aside {
+  flex: 1;
+}
+.row main {
+  flex: 4;
+}
+
 article.tamagotchi {
   width: 250px;
   margin: 16px;
+  box-shadow: 3px 3px 5px #000;
 }
 article.tamagotchi div {
   display: flex;
