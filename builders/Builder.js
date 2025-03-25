@@ -75,4 +75,14 @@ export class Builder {
         let ul = document.querySelector("#history");
         ul.append(li);
     }
+
+    static buildCategories = (categories = []) =>{
+        let nodelist = [];
+        categories.forEach((category) =>{
+            let li = document.createElement("li");
+            li.textContent = category;
+            nodelist.push(li);
+        });
+        return nodelist;
+    }
 }
