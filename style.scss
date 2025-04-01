@@ -91,12 +91,15 @@ article.tamagotchi {
 
     > picture {
       @include flex(column, center, center);
-      height: 100px;
+      height: 150px;
       background-color: $secondary-900;
       border: 4px solid #000;
       border-radius: 5px;
       margin-bottom: 8px;
       box-shadow: 8px 8px 15px #000 inset, -8px -8px 15px #000 inset;
+      img{
+        width: 50%;
+      }
     }
     > div {
       background-color: $black-500;
@@ -153,6 +156,7 @@ article.tamagotchi {
     color: $white-200;
       border: 5px solid $primary-400;
   }
+
 }
 
 
@@ -209,5 +213,33 @@ button {
     height: 100%;
     width: 10%;
     background-color: $secondary-500;
+  }
+}
+
+article.tamagotchi:nth-child(1) picture img{
+    animation: bounce .5s infinite;
+}
+
+article.tamagotchi:nth-child(2) picture img{
+  animation: bounce .3s infinite;
+}
+
+article.tamagotchi:nth-child(3) picture img{
+  animation: bounce .4s infinite;
+}
+
+article.tamagotchi:nth-child(4) picture img{
+  animation: bounce .6s infinite;
+}
+
+@keyframes bounce{
+  0%{
+    transform: translateY(0px);
+  }
+  50%{
+    transform: translateY(-5px);
+  }
+  100%{
+    transform: translateY(0px);
   }
 }
