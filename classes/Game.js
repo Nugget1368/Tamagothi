@@ -20,6 +20,8 @@ export class Game {
                 this.renderPet(pet);
             });
         };
+        let categories = [new Cat, new Fox, new Panda, new Toilet].map((pet) => pet.type);
+        Builder.buildCategories(["Cat", "Fox", "Panda", "Toilet"]);
         // Add eventlisteners
         let modal = document.querySelector("dialog[data-modal]");
         let openModalBtn = document.querySelector("button[data-open-modal]");
@@ -45,6 +47,7 @@ export class Game {
     addPet = () => {
         let name = document.querySelector("#name").value;
         let type = document.querySelector("#type").value;
+        console.log(type);
         let pet = {};
         if (type == "Cat")
             pet = new Cat(name, this.pets);
@@ -54,6 +57,7 @@ export class Game {
             pet = new Panda(name, this.pets);
         else if (type == "Toilet")
             pet = new Toilet(name, this.pets);
+        console.log(pet);
         this.statsTimer(pet);
         return pet;
     }
@@ -123,7 +127,7 @@ export class Game {
     removePet = (pet = {}) => {
         this.pets.splice(this.pets.indexOf(pet), 1);
         let article = document.querySelector(`article#pet-${pet.name}`);
-        if(article){
+        if (article) {
             article.remove();
             Builder.buildHistory(`You abandoned ${pet.type} ${pet.name}.`);
         }
