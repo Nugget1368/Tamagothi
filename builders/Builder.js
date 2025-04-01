@@ -77,12 +77,12 @@ export class Builder {
     }
 
     static buildCategories = (categories = []) =>{
-        let nodelist = [];
+        let select = document.querySelector("select#type");
         categories.forEach((category) =>{
-            let li = document.createElement("li");
-            li.textContent = category;
-            nodelist.push(li);
+            let li = document.createElement("option");
+            li.innerHTML = `<label>${category}</label>`;
+            select.append(li);
         });
-        return nodelist;
+        console.log(select)
     }
 }

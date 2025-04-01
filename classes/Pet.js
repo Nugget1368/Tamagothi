@@ -93,7 +93,7 @@ export class Fox extends Pet {
 export class Panda extends Pet {
     constructor(name = "Nameless") {
         super(name);
-        this.type = "Fox";
+        this.type = "Panda";
         this.img = "";
     }
 
