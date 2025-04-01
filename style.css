@@ -181,14 +181,22 @@ article.tamagotchi div.content {
   border: 5px solid #0b4b60;
 }
 
+dialog {
+  border: 0px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 24px 16px;
+  min-width: 200px;
+  width: 50%;
+}
 dialog fieldset {
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
   align-items: stretch;
   border: none;
-  padding: 0px;
   font-size: 17px;
+  padding: 0px;
 }
 dialog footer {
   display: flex;

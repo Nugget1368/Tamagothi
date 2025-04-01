@@ -12,7 +12,6 @@ main {
   padding: 0;
   margin: 0;
   background-color: #b6dae2;
-  // opacity: 0.8;
   background-image: radial-gradient(#28b5d5 0.5px, transparent 0.5px),
     radial-gradient(#123c77 0.5px, #cfe6eb 0.5px);
   background-size: 20px 20px;
@@ -167,11 +166,17 @@ article.tamagotchi {
 }
 
 dialog {
+  border: 0px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 24px 16px;
+  min-width: 200px;
+  width: 50%;
   fieldset {
     @include flex(column);
     border: none;
-    padding: 0px;
     font-size: 17px;
+    padding: 0px;
   }
   footer {
     @include flex(column);
