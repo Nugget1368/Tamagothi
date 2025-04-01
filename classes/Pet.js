@@ -70,7 +70,7 @@ export class Cat extends Pet {
     constructor(name = "Nameless") {
         super(name);
         this.type = "Cat";
-        this.img = "./images/pokeball.svg";
+        this.img = "./images/cat.svg";
     }
 
     growl() {
@@ -82,7 +82,7 @@ export class Fox extends Pet {
     constructor(name = "Nameless") {
         super(name);
         this.type = "Fox";
-        this.img = "";
+        this.img = "./images/fox.svg";
     }
 
     growl() {
@@ -93,8 +93,8 @@ export class Fox extends Pet {
 export class Panda extends Pet {
     constructor(name = "Nameless") {
         super(name);
-        this.type = "Fox";
-        this.img = "";
+        this.type = "Panda";
+        this.img = "./images/panda.svg";
     }
 
     growl() {
@@ -106,7 +106,7 @@ export class Toilet extends Pet {
     constructor(name = "Nameless") {
         super(name);
         this.type = "Toilet";
-        this.img = "";
+        this.img = "./images/toilet.svg";
     }
 
     growl() {

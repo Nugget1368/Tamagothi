@@ -75,4 +75,14 @@ export class Builder {
         let ul = document.querySelector("#history");
         ul.append(li);
     }
+
+    static buildCategories = (categories = []) =>{
+        let select = document.querySelector("select#type");
+        categories.forEach((category) =>{
+            let li = document.createElement("option");
+            li.innerHTML = `<label>${category}</label>`;
+            select.append(li);
+        });
+        console.log(select)
+    }
 }
