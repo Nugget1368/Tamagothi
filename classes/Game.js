@@ -113,6 +113,7 @@ export class Game {
             if (pet) {
                 pet.decreaseAllValues();
                 this.updatePetValues(pet);
+                chatBubble.displayText(`bubble-${pet.name}`, pet.growl());
                 if (pet && (!pet.checkValues())) {
                     this.removePet(pet);
                     clearInterval(intervalId);
