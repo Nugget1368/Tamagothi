@@ -58,7 +58,7 @@ export class Game {
             pet = new Panda(name, this.pets);
         else if (type == "Toilet")
             pet = new Toilet(name, this.pets);
-        Timer.statsTimer(pet);
+        Timer.statsTimer(this.pets, pet);
         return pet;
     }
 
