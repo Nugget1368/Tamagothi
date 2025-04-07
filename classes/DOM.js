@@ -3,7 +3,7 @@ import { chatBubble } from "./ChatBubble.js";
 export class DOM {
     static removePet(pets = [], pet = {}) {
         pets.splice(pets.indexOf(pet), 1);
-        let article = document.querySelector(`article#pet-${pet.name}`);
+        let article = document.querySelector(`article#${pet.id}`);
         if (article) {
             article.remove();
             Builder.buildHistory(`You abandoned ${pet.type} ${pet.name}.`);
@@ -11,13 +11,13 @@ export class DOM {
     }
 
     static updatePetValues(pet = {}) {
-        let article = document.querySelector(`article#pet-${pet.name}`);
+        let article = document.querySelector(`article#${pet.id}`);
         let values = ["energy", "fullness", "happiness"];
         if (article) {
-            chatBubble.displayText(`bubble-${pet.name}`, pet.growl());
+            chatBubble.displayText(`bubble-${pet.id}`, pet.growl());
             values.forEach((v) => {
                 article.querySelector(`label.${v}`).textContent = `${v.charAt(0).toUpperCase() + v.slice(1)}: ${pet[v]}`;
-                article.querySelector(`#${v}-bar-${pet.name} .fill`).style.width = `${pet[v]}%`;
+                article.querySelector(`#${v}-bar-${pet.id} .fill`).style.width = `${pet[v]}%`;
             })
         }
     }
