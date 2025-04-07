@@ -111,9 +111,9 @@ export class Game {
     statsTimer(pet = {}) {
         let intervalId = setInterval(() => {
             if (pet) {
+                chatBubble.displayText(`bubble-${pet.name}`, pet.growl());
                 pet.decreaseAllValues();
                 this.updatePetValues(pet);
-                chatBubble.displayText(`bubble-${pet.name}`, pet.growl());
                 if (pet && (!pet.checkValues())) {
                     this.removePet(pet);
                     clearInterval(intervalId);
