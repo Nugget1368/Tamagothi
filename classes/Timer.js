@@ -4,7 +4,6 @@ export class Timer {
     static statsTimer(pet = {}) {
         let intervalId = setInterval(() => {
             if (pet) {
-                // chatBubble.displayText(`bubble-${pet.name}`, pet.growl());
                 pet.decreaseAllValues();
                 DOM.updatePetValues(pet);
                 if (pet && (!pet.checkValues())) {
