@@ -1,18 +1,14 @@
 import { Builder } from "../builders/Builder.js";
 export class DOM {
     static removePet(pets = [], pet = {}) {
-        console.log(pets);
         let index = pets.indexOf(pet);
-        console.log(index);
         if(index > -1){
             pets.splice(index, 1);
         }
-        console.log(pets);
         let article = document.querySelector(`article#${pet.id}`);
         if (article) {
             article.remove();
             Builder.buildHistory(`You abandoned ${pet.type} ${pet.name}.`);
-
         }
     }
 
