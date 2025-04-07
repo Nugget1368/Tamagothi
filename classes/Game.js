@@ -1,6 +1,7 @@
 import { Cat, Fox, Panda, Toilet } from "./Pet.js"
 import { Builder } from "../builders/Builder.js";
 import { chatBubble } from "./ChatBubble.js";
+import { DOM } from "./DOM.js";
 
 export class Game {
     constructor() {
@@ -10,7 +11,7 @@ export class Game {
     renderPet = (pet = {}) => {
         Builder.buildPet(pet);
         this.setPetBtnActions(pet);
-        this.updatePetValues(pet);
+        DOM.updatePetValues(pet);
     }
 
     startGame = () => {
@@ -21,7 +22,7 @@ export class Game {
             });
         };
         let categories = [new Cat, new Fox, new Panda, new Toilet].map((pet) => pet.type);
-        Builder.buildCategories(["Cat", "Fox", "Panda", "Toilet"]);
+        Builder.buildCategories([...categories]);
         // Add eventlisteners
         let modal = document.querySelector("dialog[data-modal]");
         let openModalBtn = document.querySelector("button[data-open-modal]");
@@ -47,7 +48,6 @@ export class Game {
     addPet = () => {
         let name = document.querySelector("#name").value;
         let type = document.querySelector("#type").value;
-        console.log(type);
         let pet = {};
         if (type == "Cat")
             pet = new Cat(name, this.pets);
@@ -57,7 +57,6 @@ export class Game {
             pet = new Panda(name, this.pets);
         else if (type == "Toilet")
             pet = new Toilet(name, this.pets);
-        console.log(pet);
         this.statsTimer(pet);
         return pet;
     }
@@ -71,41 +70,30 @@ export class Game {
         napBtn.addEventListener("click", () => {
             let response = pet.nap();
             chatBubble.displayText(`bubble-${pet.name}`, response);
-            this.updatePetValues(pet);
+            DOM.updatePetValues(pet);
             Builder.buildHistory(response);
             if (response.includes("ran away.")) {
-                this.removePet(pet);
+                DOM.removePet(this.pets, pet);
             }
         });
         playBtn.addEventListener("click", () => {
             let response = pet.play();
             chatBubble.displayText(`bubble-${pet.name}`, response);
-            this.updatePetValues(pet);
+            DOM.updatePetValues(pet);
             Builder.buildHistory(response);
             if (response.includes("ran away.")) {
-                this.removePet(pet);
+                DOM.removePet(this.pets, pet);
             }
         });
         feedBtn.addEventListener("click", () => {
             let response = pet.eat();
             chatBubble.displayText(`bubble-${pet.name}`, response);
-            this.updatePetValues(pet);
+            DOM.updatePetValues(pet);
             Builder.buildHistory(response);
             if (response.includes("ran away.")) {
-                this.removePet(pet);
+                DOM.removePet(this.pets, pet);
             }
         });
-    }
-
-    updatePetValues = (pet = {}) => {
-        let article = document.querySelector(`article#pet-${pet.name}`);
-        let values = ["energy", "fullness", "happiness"];
-        if (article) {
-            values.forEach((v) => {
-                article.querySelector(`label.${v}`).textContent = `${v.charAt(0).toUpperCase() + v.slice(1)}: ${pet[v]}`;
-                article.querySelector(`#${v}-bar-${pet.name} .fill`).style.width = `${pet[v]}%`;
-            })
-        }
     }
 
     statsTimer(pet = {}) {
@@ -113,9 +101,9 @@ export class Game {
             if (pet) {
                 chatBubble.displayText(`bubble-${pet.name}`, pet.growl());
                 pet.decreaseAllValues();
-                this.updatePetValues(pet);
+                DOM.updatePetValues(pet);
                 if (pet && (!pet.checkValues())) {
-                    this.removePet(pet);
+                    DOM.removePet(this.pets, pet);
                     clearInterval(intervalId);
                 };
             }
@@ -123,14 +111,5 @@ export class Game {
                 clearInterval(intervalId);
             }
         }, 10000);
-    }
-
-    removePet = (pet = {}) => {
-        this.pets.splice(this.pets.indexOf(pet), 1);
-        let article = document.querySelector(`article#pet-${pet.name}`);
-        if (article) {
-            article.remove();
-            Builder.buildHistory(`You abandoned ${pet.type} ${pet.name}.`);
-        }
     }
 }
