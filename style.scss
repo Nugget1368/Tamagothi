@@ -66,7 +66,7 @@ aside {
   box-sizing: border-box;
   border-radius: 5px;
   width: 200px;
-  height: 100vh;
+  min-height: 100vh;
   position: sticky;
   left: 0px;
   top: 0px;
@@ -170,6 +170,7 @@ article.tamagotchi {
     min-width: 80px;
     max-width: 260px;
     min-height: 40px;
+    z-index: 100;
     transform: translate(-60%, -50%);
     background: $white-200;
     border: 1px solid $black-500;
@@ -187,12 +188,6 @@ article.tamagotchi {
 }
 
 dialog {
-  // border: 0px;
-  // border-radius: 8px;
-  // box-sizing: border-box;
-  // padding: 24px 16px;
-  // min-width: 200px;
-  // width: 50%;
   border: 3px solid #000;
   border-radius: 8px;
   box-shadow: 8px 8px #000;
