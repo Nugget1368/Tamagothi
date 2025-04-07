@@ -39,7 +39,7 @@ export class Game {
                 Builder.buildHistory(`Adopted ${pet.type} ${pet.name} as your pet.`);
             }
             else {
-                chatBubble.displayText(`bubble-${this.pets[0].name}`, `Slow down partner! You can only have 4 pets at a time!`);
+                chatBubble.displayText(`bubble-${this.pets[0].id}`, `Slow down partner! You can only have 4 pets at a time!`);
                 Builder.buildHistory(`Could not adopt ${pet.type} ${pet.name}. You can only have 4 pets at a time.  But you can always kill one to get more room ;)`);
             }
             modal.close();
@@ -63,14 +63,14 @@ export class Game {
     }
 
     setPetBtnActions = (pet = {}) => {
-        let article = document.querySelector(`article#pet-${pet.name}`);
-        let napBtn = article.querySelector(`button#Nap-${pet.name}`);
-        let playBtn = article.querySelector(`button#Play-${pet.name}`);
-        let feedBtn = article.querySelector(`button#Feed-${pet.name}`);
+        let article = document.querySelector(`article#${pet.id}`);
+        let napBtn = article.querySelector(`button#Nap-${pet.id}`);
+        let playBtn = article.querySelector(`button#Play-${pet.id}`);
+        let feedBtn = article.querySelector(`button#Feed-${pet.id}`);
 
         napBtn.addEventListener("click", () => {
             let response = pet.nap();
-            chatBubble.displayText(`bubble-${pet.name}`, response);
+            chatBubble.displayText(`bubble-${pet.id}`, response);
             DOM.updatePetValues(pet);
             Builder.buildHistory(response);
             if (response.includes("ran away.")) {
@@ -79,7 +79,7 @@ export class Game {
         });
         playBtn.addEventListener("click", () => {
             let response = pet.play();
-            chatBubble.displayText(`bubble-${pet.name}`, response);
+            chatBubble.displayText(`bubble-${pet.id}`, response);
             DOM.updatePetValues(pet);
             Builder.buildHistory(response);
             if (response.includes("ran away.")) {
@@ -88,7 +88,7 @@ export class Game {
         });
         feedBtn.addEventListener("click", () => {
             let response = pet.eat();
-            chatBubble.displayText(`bubble-${pet.name}`, response);
+            chatBubble.displayText(`bubble-${pet.id}`, response);
             DOM.updatePetValues(pet);
             Builder.buildHistory(response);
             if (response.includes("ran away.")) {

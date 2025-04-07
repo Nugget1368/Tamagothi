@@ -3,7 +3,7 @@ export class Builder {
     static buildPet = (pet) => {
         let article = document.createElement("article");
         article.classList.add("tamagotchi");
-        article.setAttribute("id", `pet-${pet.name}`);
+        article.setAttribute("id", `${pet.id}`);
         let picture = document.createElement("picture");
         let img = document.createElement("img");
         img.src = pet.img;
@@ -13,15 +13,15 @@ export class Builder {
         let energy = document.createElement("label");
         energy.classList.add("energy");
         energy.textContent = `Energy: ${pet.energy}`;
-        let energyBar = this.buildStatBar("energy", pet.name);
+        let energyBar = this.buildStatBar("energy", pet.id);
         let fullness = document.createElement("label");
         fullness.classList.add("fullness");
         fullness.textContent = `Fullness: ${pet.fullness}`;
-        let fullnessBar = this.buildStatBar("fullness", pet.name);
+        let fullnessBar = this.buildStatBar("fullness", pet.id);
         let happiness = document.createElement("label");
         happiness.classList.add("happiness");
         happiness.textContent = `Happiness: ${pet.happiness}`;
-        let happinessBar = this.buildStatBar("happiness", pet.name);
+        let happinessBar = this.buildStatBar("happiness", pet.id);
         let div = document.createElement("div");
         let content = document.createElement("div");
         content.classList.add("content");
@@ -41,7 +41,7 @@ export class Builder {
             let btn = document.createElement("button");
             let action = x == 0 ? "Nap" : x == 1 ? "Play" : "Feed";
             btn.classList.add("pet-btn");
-            let btnId = `${action}-${pet.name}`;
+            let btnId = `${action}-${pet.id}`;
             btn.setAttribute("id", btnId);
             let label = document.createElement("label");
             label.textContent = action;
@@ -54,7 +54,7 @@ export class Builder {
 
     static buildChatBubble = (pet) => {
         let bubble = document.createElement("div");
-        bubble.setAttribute("id", `bubble-${pet.name}`);
+        bubble.setAttribute("id", `bubble-${pet.id}`);
         bubble.classList.add("chat-bubble");
         bubble.classList.add("hide");
         return bubble;
