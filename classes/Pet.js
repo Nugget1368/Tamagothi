@@ -1,6 +1,5 @@
 class Pet {
     constructor(name = "Nameless") {
-        // this.id = `pet-${name}`;
         this.id = `pet-${Date.now()}`;
         this.name = name;
         this.energy = 50;
