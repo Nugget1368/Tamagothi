@@ -14,6 +14,14 @@ main {
   font-family: sans-serif;
 }
 
+button, select, a, label {
+  cursor: pointer !important;
+}
+
+h1, h2, h3, h4, h5, h6, p, span {
+  cursor: default !important;
+}
+
 main {
   display: flex;
   flex-flow: column;
@@ -214,6 +222,9 @@ dialog footer {
   justify-content: flex-start;
   align-items: stretch;
   margin-top: 10px;
+}
+dialog footer button {
+  margin-bottom: 8px;
 }
 
 button {

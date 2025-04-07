@@ -18,6 +18,14 @@ main {
   font-family: sans-serif;
 }
 
+button, select, a, label{
+  cursor: pointer !important;
+}
+
+h1, h2, h3, h4, h5, h6, p, span{
+  cursor: default !important;
+}
+
 main {
   @include flex(column);
 }
@@ -192,12 +200,14 @@ dialog {
         border-color: $secondary-900;
         box-shadow: 0 0 0 2px $secondary-700;
       }
-    }
-    
+    }    
   }
   footer {
     @include flex(column);
     margin-top: 10px;
+    button{
+      margin-bottom: 8px;
+    }
   }
 }
 
