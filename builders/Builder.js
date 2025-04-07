@@ -83,6 +83,5 @@ export class Builder {
             li.innerHTML = `<label>${category}</label>`;
             select.append(li);
         });
-        console.log(select)
     }
 }
