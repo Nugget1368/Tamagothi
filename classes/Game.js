@@ -2,6 +2,7 @@ import { Cat, Fox, Panda, Toilet } from "./Pet.js"
 import { Builder } from "../builders/Builder.js";
 import { chatBubble } from "./ChatBubble.js";
 import { DOM } from "./DOM.js";
+import { Timer } from "./Timer.js";
 
 export class Game {
     constructor() {
@@ -57,7 +58,7 @@ export class Game {
             pet = new Panda(name, this.pets);
         else if (type == "Toilet")
             pet = new Toilet(name, this.pets);
-        this.statsTimer(pet);
+        Timer.statsTimer(pet);
         return pet;
     }
 
@@ -94,22 +95,5 @@ export class Game {
                 DOM.removePet(this.pets, pet);
             }
         });
-    }
-
-    statsTimer(pet = {}) {
-        let intervalId = setInterval(() => {
-            if (pet) {
-                chatBubble.displayText(`bubble-${pet.name}`, pet.growl());
-                pet.decreaseAllValues();
-                DOM.updatePetValues(pet);
-                if (pet && (!pet.checkValues())) {
-                    DOM.removePet(this.pets, pet);
-                    clearInterval(intervalId);
-                };
-            }
-            else {
-                clearInterval(intervalId);
-            }
-        }, 10000);
     }
 }
